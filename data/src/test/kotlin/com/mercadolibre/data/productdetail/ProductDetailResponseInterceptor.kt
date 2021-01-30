@@ -1,11 +1,11 @@
-package interceptor
+package com.mercadolibre.data.productdetail
 
 import okhttp3.Interceptor
 import okhttp3.MediaType
 import okhttp3.Response
 import okhttp3.ResponseBody
 
-class ResponseInterceptor : Interceptor {
+class ProductDetailResponseInterceptor : Interceptor {
     private val error400Response = "{\n" +
             "    \"message\": \"Some error message\",\n" +
             "    \"error\": \"Some error\",\n" +
@@ -29,17 +29,17 @@ class ResponseInterceptor : Interceptor {
         val body = response.body()
 
         val code = when {
-            uri.contains("sites/MLA/search?q=product1") -> 400
-            uri.contains("sites/MLA/search?q=product2") -> 500
-            uri.contains("sites/MLA/search?q=product3") -> 200
-            uri.contains("sites/MLA/search?q=product4") -> 200
+            uri.contains("items/product1") -> 400
+            uri.contains("items/product2") -> 500
+            uri.contains("items/product3") -> 200
+            uri.contains("items/product4") -> 200
             else -> response.code()
         }
         val responseString = when {
-            uri.contains("sites/MLA/search?q=product1") -> error400Response
-            uri.contains("sites/MLA/search?q=product2") -> error500Response
-            uri.contains("sites/MLA/search?q=product3") -> invalidJsonResponse
-            uri.contains("sites/MLA/search?q=product4") -> nullResponse
+            uri.contains("items/product1") -> error400Response
+            uri.contains("items/product2") -> error500Response
+            uri.contains("items/product3") -> invalidJsonResponse
+            uri.contains("items/product4") -> nullResponse
             else -> body?.string() ?: ""
         }
 

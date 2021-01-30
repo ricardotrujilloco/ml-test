@@ -15,10 +15,4 @@ object SearchProductBackendModel {
         @SerializedName("currency_id") val currencyId: String = "",
         @SerializedName("thumbnail") val thumbnail: String = ""
     )
-
-    data class BackEndError(
-        @SerializedName("message") val message: String = "",
-        @SerializedName("error") val error: String = "",
-        @SerializedName("status") val status: Int = 0
-    )
 }
