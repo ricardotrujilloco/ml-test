@@ -1,2 +1,3 @@
+include ':product-search'
 include ':app'
 rootProject.name = "Product Search App"
