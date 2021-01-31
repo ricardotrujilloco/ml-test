@@ -1,8 +1,8 @@
 package com.mercadolibre.persistence.productdetail
 
 import com.google.gson.Gson
-import com.mercadolibre.persistence.BackEndErrorSerializer
-import com.mercadolibre.persistence.common.BackendModel
+import com.mercadolibre.persistence.common.serialization.BackEndErrorSerializer
+import com.mercadolibre.persistence.common.model.BackendModel
 import com.mercadolibre.persistence.productdetail.api.ProductDetailService
 import com.mercadolibre.persistence.productdetail.cache.ProductDetailCache
 import com.mercadolibre.persistence.productdetail.mapper.ProductDetailBackendResponseMapperImpl

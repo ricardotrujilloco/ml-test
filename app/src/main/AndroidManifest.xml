@@ -3,13 +3,13 @@
     package="com.mercadolibre.productsearchapp" >
 
     <application
-        android:allowBackup="true"
+        android:name="com.mercadolibre.SearchApp"
+        android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
-        android:supportsRtl="true"
         android:theme="@style/Theme.ProductSearchApp" >
-        <activity android:name="com.mercadolibre.productsearchapp.MainActivity" >
+        <activity android:name="com.mercadolibre.MainActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

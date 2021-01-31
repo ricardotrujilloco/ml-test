@@ -1,6 +1,6 @@
 package com.mercadolibre.persistence.productdetail.mapper
 
-import com.mercadolibre.persistence.BackendResponseMapper
+import com.mercadolibre.persistence.common.BackendResponseMapper
 import com.mercadolibre.persistence.productdetail.model.ProductDetailsBackendModel
 import com.mercadolibre.productsearch.entities.Product
 

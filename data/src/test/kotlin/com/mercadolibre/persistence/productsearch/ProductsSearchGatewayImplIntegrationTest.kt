@@ -1,8 +1,8 @@
 package com.mercadolibre.persistence.productsearch
 
 import com.google.gson.Gson
-import com.mercadolibre.persistence.BackEndErrorSerializer
-import com.mercadolibre.persistence.common.BackendModel
+import com.mercadolibre.persistence.common.serialization.BackEndErrorSerializer
+import com.mercadolibre.persistence.common.model.BackendModel
 import com.mercadolibre.persistence.productsearch.api.SearchProductsService
 import com.mercadolibre.persistence.productsearch.mapper.ProductsSearchBackendResponseMapperImpl
 import com.mercadolibre.productsearch.entities.Product

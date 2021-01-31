@@ -1,7 +1,7 @@
 package com.mercadolibre.persistence.productsearch
 
-import com.mercadolibre.persistence.BackEndErrorSerializer
-import com.mercadolibre.persistence.BackendResponseMapper
+import com.mercadolibre.persistence.common.serialization.BackEndErrorSerializer
+import com.mercadolibre.persistence.common.BackendResponseMapper
 import com.mercadolibre.persistence.productsearch.api.SearchProductsService
 import com.mercadolibre.persistence.productsearch.model.SearchProductBackendModel
 import com.mercadolibre.productsearch.entities.Product

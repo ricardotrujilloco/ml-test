@@ -1,7 +1,7 @@
 package com.mercadolibre.persistence.productdetail
 
-import com.mercadolibre.persistence.BackEndErrorSerializer
-import com.mercadolibre.persistence.BackendResponseMapper
+import com.mercadolibre.persistence.common.serialization.BackEndErrorSerializer
+import com.mercadolibre.persistence.common.BackendResponseMapper
 import com.mercadolibre.persistence.productdetail.api.ProductDetailService
 import com.mercadolibre.persistence.productdetail.cache.ProductDetailCache
 import com.mercadolibre.persistence.productdetail.model.ProductDetailsBackendModel

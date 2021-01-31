@@ -1,8 +1,8 @@
-package com.mercadolibre.productsearch.usecases.api
+package com.mercadolibre.productsearch.usecases.productsearch
 
 import com.mercadolibre.productsearch.entities.Product
 import com.mercadolibre.productsearch.interfaceadapters.gateways.ResponseWrapper
 
-interface SearchProductByQueryInteractor {
+interface SearchProductInteractor {
     fun searchProductByQuery(query: String): ResponseWrapper<List<Product>>
 }

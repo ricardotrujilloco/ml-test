@@ -1,4 +1,4 @@
-package com.mercadolibre.persistence.common
+package com.mercadolibre.persistence.common.model
 
 import com.google.gson.annotations.SerializedName
 
