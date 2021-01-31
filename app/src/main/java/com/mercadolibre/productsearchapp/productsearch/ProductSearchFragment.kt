@@ -6,8 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.mercadolibre.productsearchapp.databinding.FragmentProductSearchBinding
+import org.koin.android.viewmodel.ext.android.viewModel
 
-class ProductSearchFragment(viewModel: ProductSearchViewModel) : Fragment() {
+class ProductSearchFragment : Fragment() {
+    private val viewModel: ProductSearchViewModel by viewModel()
     private lateinit var viewBinding: FragmentProductSearchBinding
 
     override fun onCreateView(
@@ -19,5 +21,12 @@ class ProductSearchFragment(viewModel: ProductSearchViewModel) : Fragment() {
             LayoutInflater.from(context), null, true
         );
         return viewBinding.root
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        viewModel.getMediator().observe(viewLifecycleOwner, {
+            viewBinding.testField.text = it
+        })
     }
 }
