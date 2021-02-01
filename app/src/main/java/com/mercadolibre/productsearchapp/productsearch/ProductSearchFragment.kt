@@ -43,13 +43,17 @@ class ProductSearchFragment : Fragment(), OnViewSelectedListener {
                 .setUpListManager(context)
                 .setAdapter(listAdapter)
                 .setSearchFieldChangeListener { searchProduct(it) }
+                .setSearchKeyboardActionListener()
+                .showContent(SearchState.NO_RESULTS)
         }
         viewModel.getMediator().observe(viewLifecycleOwner, {
-            listAdapter.setItems(it)
+            viewBinding.showContent(it.state)
+            listAdapter.setItems(it.products)
         })
     }
 
-    val searchProduct = debounce<String>(500L, lifecycleScope) { viewModel.searchProducts(it) }
+    private val searchProduct =
+        debounce<String>(500L, lifecycleScope) { viewModel.searchProducts(it) }
 
     override fun onItemSelected(id: String) {
         navigator.next(activity, id)

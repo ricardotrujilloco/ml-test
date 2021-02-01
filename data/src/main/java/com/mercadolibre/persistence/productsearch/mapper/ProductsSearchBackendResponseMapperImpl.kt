@@ -11,7 +11,10 @@ class ProductsSearchBackendResponseMapperImpl :
         return response.results.map {
             Product(
                 id = it.id,
-                title = it.title
+                title = it.title,
+                price = it.price.toString(),
+                thumbnail = it.thumbnail,
+                freeShipping = it.shipping.freeShipping
             )
         }
     }

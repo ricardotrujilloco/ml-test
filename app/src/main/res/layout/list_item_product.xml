@@ -1,79 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <!-- Left Thumbnail image -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/item_container_height"
+        android:background="@drawable/item_ripple"
+        android:clickable="true"
+        android:focusable="true">
 
         <ImageView
-            android:id="@+id/imgThumbnail"
-            android:layout_width="50dip"
-            android:layout_height="50dip"
-            android:layout_marginLeft="5dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginBottom="5dp" />
-
-        <!-- Description -->
+            android:id="@+id/productThumbnail"
+            android:layout_width="@dimen/item_image_height"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/size_medium"
+            android:layout_marginTop="@dimen/size_medium"
+            android:layout_marginBottom="@dimen/size_medium"
+            app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
-            android:id="@+id/description"
+            android:id="@+id/productTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/size_medium"
+            android:layout_marginEnd="@dimen/size_medium"
+            android:ellipsize="end"
+            android:maxLines="3"
+            android:textColor="@color/dark_grey"
+            android:textSize="@dimen/text_size_medium"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/productThumbnail"
+            app:layout_constraintTop_toTopOf="@+id/productThumbnail"
+            tools:text="Camara Canon Eod 2000d/ t7 24mp+ 18-55+32gb+bolso" />
+
+        <TextView
+            android:id="@+id/productPrice"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_xsmall"
+            android:textColor="@color/dark_grey"
+            android:textSize="@dimen/text_size_xlarge"
+            app:layout_constraintEnd_toEndOf="@+id/productTitle"
+            app:layout_constraintStart_toStartOf="@+id/productTitle"
+            app:layout_constraintTop_toBottomOf="@+id/productTitle"
+            tools:text="$ 2.389.000" />
+
+        <TextView
+            android:id="@+id/shippingTag"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/imgThumbnail"
-            android:layout_toRightOf="@+id/imgThumbnail"
-            android:textColor="#040404"
-            android:textSize="15sp"
-            android:textStyle="bold"
-            android:typeface="sans"
-            tools:text="This should be a long description like this example that I'm showing." />
+            android:layout_marginTop="@dimen/size_xsmall"
+            android:layout_marginBottom="@dimen/size_medium"
+            android:background="@drawable/shipping_tag_background"
+            android:paddingStart="@dimen/size_xxsmall"
+            android:paddingEnd="@dimen/size_xxsmall"
+            android:paddingBottom="@dimen/size_tiny"
+            android:text="@string/free_shipping"
+            android:textColor="@color/grass_green"
+            android:visibility="invisible"
+            app:layout_constraintStart_toStartOf="@+id/productPrice"
+            app:layout_constraintTop_toBottomOf="@+id/productPrice"
+            tools:visibility="visible" />
 
-        <!-- Author -->
-
-        <TextView
-            android:id="@+id/author"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/description"
-            android:layout_alignStart="@+id/description"
-            android:layout_alignLeft="@+id/description"
-            android:textColor="#343434"
-            android:textSize="10sp"
-            tools:ignore="SmallSp"
-            tools:text="Author 123" />
-
-        <!-- Comments -->
-
-        <TextView
-            android:id="@+id/comments"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/description"
-            android:layout_alignEnd="@+id/author"
-            android:layout_alignRight="@+id/author"
-            android:gravity="right"
-            android:textColor="#10bcc9"
-            android:textSize="10sp"
-            android:textStyle="bold"
-            tools:ignore="SmallSp"
-            tools:text="30012 comments" />
-
-        <!-- Time -->
-
-        <TextView
-            android:id="@+id/time"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/author"
-            android:layout_alignStart="@+id/author"
-            android:layout_alignLeft="@+id/author"
-            android:textColor="#343434"
-            android:textSize="10sp"
-            tools:ignore="SmallSp"
-            tools:text="12 hours ago" />
-    </RelativeLayout>
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:background="@color/light_grey"
+            app:layout_constraintBottom_toBottomOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -10,6 +10,6 @@ class ProductDetailViewModelImpl(
     private val mediator = MediatorLiveData<UiModel.Product>()
 
     override fun getProductDetails(productId: String) {
-        TODO("Not yet implemented")
+        // TODO("Not yet implemented")
     }
 }

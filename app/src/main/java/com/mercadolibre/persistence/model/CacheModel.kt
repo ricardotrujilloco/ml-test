@@ -13,11 +13,13 @@ object CacheModel {
         @PrimaryKey
         val id: String = "",
         val title: String = "",
+        val thumbnail: String = "",
         val price: Double = 0.0,
         val currencyId: String = "",
         @TypeConverters(ProductDetailImageConverter::class)
         val pictures: List<ProductDetailImage> = listOf(),
-        val condition: String = ""
+        val condition: String = "",
+        val shipping: String = "",
     )
 
     data class ProductDetailImage(

@@ -13,6 +13,11 @@ object SearchProductBackendModel {
         @SerializedName("title") val title: String = "",
         @SerializedName("price") val price: Double = 0.0,
         @SerializedName("currency_id") val currencyId: String = "",
-        @SerializedName("thumbnail") val thumbnail: String = ""
+        @SerializedName("thumbnail") val thumbnail: String = "",
+        @SerializedName("shipping") val shipping: Shipping = Shipping(),
+    )
+
+    data class Shipping(
+        @SerializedName("free_shipping") val freeShipping: Boolean = false,
     )
 }

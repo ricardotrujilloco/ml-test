@@ -14,6 +14,7 @@ class ProductDetailCacheImpl(
                 Product(
                     id = it.id,
                     title = it.title,
+                    thumbnail = it.thumbnail
                 )
             }
     }
