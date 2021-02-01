@@ -2,13 +2,29 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/nav_main"
+    android:id="@+id/navMain"
     app:startDestination="@id/productSearchFragment">
 
     <fragment
         android:id="@+id/productSearchFragment"
         android:name="com.mercadolibre.productsearchapp.productsearch.ProductSearchFragment"
         android:label="ProductSearchFragment"
-        tools:layout="@layout/fragment_product_search"/>
+        tools:layout="@layout/fragment_product_search">
 
+        <action
+            android:id="@+id/actionProductSearchFragmentToProductDetailActivity"
+            app:destination="@id/productDetailActivity" />
+    </fragment>
+
+    <activity
+        android:id="@+id/productDetailActivity"
+        android:name="com.mercadolibre.productsearchapp.productdetail.ProductDetailActivity"
+        android:label="activity_product_detail"
+        tools:layout="@layout/fragment_product_detail">
+
+        <argument
+            android:name="PRODUCT_ID"
+            app:argType="string"
+            android:defaultValue="" />
+    </activity>
 </navigation>

@@ -4,12 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.mercadolibre.MainActivity">
+    tools:context="com.mercadolibre.productsearchapp.productdetail.ProductDetailActivity">
 
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/mainViewFragmentController"
+    <fragment
+        android:id="@+id/productDetailViewFragmentController"
         android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:navGraph="@navigation/nav_main" />
+        app:navGraph="@navigation/nav_product_detail" />
 </androidx.constraintlayout.widget.ConstraintLayout>

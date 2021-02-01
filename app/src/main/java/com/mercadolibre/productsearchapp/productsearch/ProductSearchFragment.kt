@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import com.mercadolibre.productsearchapp.common.debounce
 import com.mercadolibre.productsearchapp.common.list.AppListAdapter
+import com.mercadolibre.productsearchapp.common.navigation.AppNavigator
 import com.mercadolibre.productsearchapp.databinding.FragmentProductSearchBinding
 import com.mercadolibre.productsearchapp.productsearch.adapter.OnViewSelectedListener
 import org.koin.android.ext.android.inject
@@ -16,6 +17,8 @@ import org.koin.android.viewmodel.ext.android.viewModel
 class ProductSearchFragment : Fragment(), OnViewSelectedListener {
     private val viewModel: ProductSearchViewModel by viewModel()
     private val listAdapter: AppListAdapter by inject()
+    private val navigator: AppNavigator<String> by inject()
+
     private lateinit var viewBinding: FragmentProductSearchBinding
 
     init {
@@ -29,7 +32,7 @@ class ProductSearchFragment : Fragment(), OnViewSelectedListener {
     ): View {
         viewBinding = FragmentProductSearchBinding.inflate(
             LayoutInflater.from(context), null, true
-        );
+        )
         return viewBinding.root
     }
 
@@ -49,6 +52,6 @@ class ProductSearchFragment : Fragment(), OnViewSelectedListener {
     val searchProduct = debounce<String>(500L, lifecycleScope) { viewModel.searchProducts(it) }
 
     override fun onItemSelected(id: String) {
-        TODO("Not yet implemented")
+        navigator.next(activity, id)
     }
 }

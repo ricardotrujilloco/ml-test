@@ -5,10 +5,10 @@ import com.mercadolibre.productsearch.interfaceadapters.gateways.ResponseWrapper
 import com.mercadolibre.productsearch.interfaceadapters.gateways.api.Repository
 
 class SearchProductInteractorImpl(
-    private val gateway: Repository<String, List<Product>>
+    private val repository: Repository<String, List<Product>>
 ) : SearchProductInteractor {
 
     override fun searchProductByQuery(query: String): ResponseWrapper<List<Product>> {
-        return gateway.execute(query)
+        return repository.execute(query)
     }
 }

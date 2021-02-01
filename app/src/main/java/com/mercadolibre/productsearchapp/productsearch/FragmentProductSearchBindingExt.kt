@@ -19,5 +19,9 @@ fun FragmentProductSearchBinding.setAdapter(listAdapter: AppListAdapter): Fragme
 
 fun FragmentProductSearchBinding.setSearchFieldChangeListener(action: (value: String) -> Unit): FragmentProductSearchBinding =
     apply {
-        searchField.addTextChangedListener { action(it.toString()) }
+        searchField.addTextChangedListener {
+            if (searchField.hasFocus()) {
+                action(it.toString())
+            }
+        }
     }

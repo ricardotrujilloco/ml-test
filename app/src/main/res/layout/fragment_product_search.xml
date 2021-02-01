@@ -24,6 +24,5 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/searchField"
             tools:listitem="@layout/list_item_product"/>
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

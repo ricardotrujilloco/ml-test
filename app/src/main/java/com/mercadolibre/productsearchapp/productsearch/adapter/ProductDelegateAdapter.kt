@@ -11,8 +11,7 @@ import com.mercadolibre.productsearchapp.common.list.ViewTypeDelegateAdapter
 import com.mercadolibre.productsearchapp.common.model.UiModel
 
 class ProductDelegateAdapter() : ViewTypeDelegateAdapter {
-    private lateinit var listener: OnViewSelectedListener
-    private lateinit var viewSelectedListener: OnViewSelectedListener
+    private var listener: OnViewSelectedListener? = null
 
     override fun onCreateViewHolder(parent: ViewGroup): RecyclerView.ViewHolder {
         return ProductViewHolder(
@@ -22,7 +21,7 @@ class ProductDelegateAdapter() : ViewTypeDelegateAdapter {
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, item: ViewType) {
         holder as ProductViewHolder
-        holder.bind(item as UiModel.ProductItem)
+        holder.bind(item as UiModel.Product)
     }
 
     override fun setListener(listener: OnViewSelectedListener) {
@@ -37,8 +36,11 @@ class ProductDelegateAdapter() : ViewTypeDelegateAdapter {
         private val comments = itemView.comments
         private val time = itemView.time*/
 
-        fun bind(item: UiModel.ProductItem) {
+        fun bind(item: UiModel.Product) {
             title.text =item.title
+            super.itemView.setOnClickListener {
+                listener?.onItemSelected(item.id)
+            }
             /*imgThumbnail.loadImg(item.thumbnail)
             description.text = item.title
             author.text = item.author

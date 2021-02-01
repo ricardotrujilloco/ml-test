@@ -5,8 +5,9 @@ import com.mercadolibre.productsearchapp.common.list.ViewType
 
 object UiModel {
 
-    data class ProductItem(
-        val title: String,
+    data class Product(
+        val id: String,
+        val title: String
     ) : ViewType {
         override fun getViewType() = AdapterConstants.PRODUCT
     }

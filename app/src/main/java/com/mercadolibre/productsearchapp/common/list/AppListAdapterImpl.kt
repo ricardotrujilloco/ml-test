@@ -10,13 +10,6 @@ import java.util.*
 class AppListAdapterImpl(private val delegateAdapters: SparseArray<ViewTypeDelegateAdapter>) :
     AppListAdapter() {
     private val items: ArrayList<ViewType> = ArrayList()
-    private val loadingItem = object : ViewType {
-        override fun getViewType() = AdapterConstants.LOADING
-    }
-
-    init {
-        items.add(loadingItem)
-    }
 
     override fun setListener(listener: OnViewSelectedListener) {
         delegateAdapters.forEach { _, adapter -> adapter.setListener(listener) }

@@ -1,7 +1,7 @@
 package com.mercadolibre.persistence.productdetail
 
-import com.mercadolibre.persistence.common.serialization.BackEndErrorSerializer
 import com.mercadolibre.persistence.common.BackendResponseMapper
+import com.mercadolibre.persistence.common.serialization.BackEndErrorSerializer
 import com.mercadolibre.persistence.productdetail.api.ProductDetailService
 import com.mercadolibre.persistence.productdetail.cache.ProductDetailCache
 import com.mercadolibre.persistence.productdetail.model.ProductDetailsBackendModel
@@ -21,18 +21,21 @@ class ProductDetailRepository(
 
     override fun execute(arguments: String?): ResponseWrapper<Product> {
         return try {
-            service.getProductDetails(arguments).execute().let(handleResponse)
+            service.getProductDetails(arguments).execute()
+                .let { handleResponse(it, arguments ?: "") }
         } catch (e: Exception) {
-            cache.getProductDetails().takeIf { it.id.isNotBlank() }?.let { ResponseWrapper(it) }
+            cache.getProductDetails(arguments).takeIf { it.id.isNotBlank() }
+                ?.let { ResponseWrapper(it) }
                 ?: ResponseWrapper(error = UseCaseError(e.message))
         }
     }
 
-    private val handleResponse: (Response<ProductDetailsBackendModel.ProductDetailResponse?>) -> ResponseWrapper<Product> =
-        { response ->
+    private val handleResponse: (Response<ProductDetailsBackendModel.ProductDetailResponse?>, productId: String) -> ResponseWrapper<Product> =
+        { response, productId ->
             response.body()?.let {
                 ResponseWrapper(productsMapper.backendModelToEntity(it))
-            } ?: cache.getProductDetails().takeIf { it.id.isNotBlank() }?.let { ResponseWrapper(it) }
+            } ?: cache.getProductDetails(productId).takeIf { it.id.isNotBlank() }
+                ?.let { ResponseWrapper(it) }
             ?: ResponseWrapper(error = response.errorBody()?.let { getError(it) }
                 ?: UseCaseError())
         }
