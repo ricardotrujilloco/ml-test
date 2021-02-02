@@ -1,5 +1,6 @@
 package com.mercadolibre.productsearchapp.productsearch
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.viewModelScope
 import com.mercadolibre.productsearch.entities.Product
@@ -40,5 +41,5 @@ class ProductSearchViewModelImpl(
                 } ?: UiModel.SearchResult(SearchState.NO_RESULTS)
         }
 
-    override fun getMediator(): MediatorLiveData<UiModel.SearchResult> = mediator
+    override fun getMediator(): LiveData<UiModel.SearchResult> = mediator
 }

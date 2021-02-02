@@ -1,30 +1,29 @@
 package com.mercadolibre.productsearchapp.productdetail
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.viewModelScope
 import com.mercadolibre.productsearch.entities.Product
 import com.mercadolibre.productsearch.interfaceadapters.gateways.ResponseWrapper
 import com.mercadolibre.productsearch.usecases.productdetail.ProductDetailInteractor
 import com.mercadolibre.productsearchapp.common.model.UiModel
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.*
 
 class ProductDetailViewModelImpl(
     private val interactor: ProductDetailInteractor,
-    private val mapper: ProductDetailUiMapper
+    private val mapper: ProductDetailUiMapper,
+    private val backgroundDispatcher: CoroutineDispatcher
 ) : ProductDetailViewModel() {
     private val mediator = MediatorLiveData<UiModel.ProductDetailResult>()
 
     override fun getProductDetails(productId: String) {
         mediator.value = UiModel.ProductDetailResult(ProductDetailState.LOADING)
         viewModelScope.launch(Dispatchers.Main) {
-            mediator.value = withContext(Dispatchers.IO) {
+            mediator.value = withContext(backgroundDispatcher) {
                 productId.takeIf { it.isNotBlank() }
                     ?.let { interactor.getProductDetails(productId) }
-            }?.let { responseWrapper ->
-                manageResponse(responseWrapper)
-            } ?: UiModel.ProductDetailResult(ProductDetailState.ERROR)
+            }?.let { responseWrapper -> manageResponse(responseWrapper) }
+                ?: UiModel.ProductDetailResult(ProductDetailState.ERROR)
         }
     }
 
@@ -40,5 +39,5 @@ class ProductDetailViewModelImpl(
             } ?: UiModel.ProductDetailResult(ProductDetailState.ERROR)
         }
 
-    override fun getMediator(): MediatorLiveData<UiModel.ProductDetailResult> = mediator
+    override fun getMediator(): LiveData<UiModel.ProductDetailResult> = mediator
 }

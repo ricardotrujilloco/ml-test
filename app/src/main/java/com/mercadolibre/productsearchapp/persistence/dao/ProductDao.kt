@@ -1,11 +1,11 @@
-package com.mercadolibre.persistence.dao
+package com.mercadolibre.productsearchapp.persistence.dao
 
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.mercadolibre.persistence.AppDatabase.Companion.PRODUCT_TABLE
-import com.mercadolibre.persistence.model.CacheModel
+import com.mercadolibre.productsearchapp.persistence.AppDatabase.Companion.PRODUCT_TABLE
+import com.mercadolibre.productsearchapp.persistence.model.CacheModel
 
 @Dao
 interface ProductDao {

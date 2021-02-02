@@ -1,6 +1,7 @@
 package com.mercadolibre.persistence.productsearch
 
 import com.google.gson.Gson
+import com.mercadolibre.persistence.common.log.ErrorLogger
 import com.mercadolibre.persistence.common.serialization.BackEndErrorSerializer
 import com.mercadolibre.persistence.common.model.BackendModel
 import com.mercadolibre.persistence.productsearch.api.SearchProductsService
@@ -25,6 +26,11 @@ class ProductsSearchGatewayImplIntegrationTest {
     }
     private val productsMapper =
         ProductsSearchBackendResponseMapperImpl()
+    private val logger = object : ErrorLogger {
+        override fun log(origin: String, e: Exception) {
+            // Does nothing
+        }
+    }
 
     @Test
     fun `given a query string, when execute is called, then returns a list of products`() {
@@ -37,7 +43,8 @@ class ProductsSearchGatewayImplIntegrationTest {
             ProductsSearchRepository(
                 service,
                 errorSerializer,
-                productsMapper
+                productsMapper,
+                logger
             )
         val query = "canon"
 
@@ -57,7 +64,8 @@ class ProductsSearchGatewayImplIntegrationTest {
             ProductsSearchRepository(
                 service,
                 errorSerializer,
-                productsMapper
+                productsMapper,
+                logger
             )
         val query = ""
 
@@ -77,7 +85,8 @@ class ProductsSearchGatewayImplIntegrationTest {
             ProductsSearchRepository(
                 service,
                 errorSerializer,
-                productsMapper
+                productsMapper,
+                logger
             )
         val query = ""
 
@@ -99,7 +108,8 @@ class ProductsSearchGatewayImplIntegrationTest {
             ProductsSearchRepository(
                 service,
                 errorSerializer,
-                productsMapper
+                productsMapper,
+                logger
             )
         val query = "product1"
 
@@ -121,7 +131,8 @@ class ProductsSearchGatewayImplIntegrationTest {
             ProductsSearchRepository(
                 service,
                 errorSerializer,
-                productsMapper
+                productsMapper,
+                logger
             )
         val query = "product2"
 
@@ -143,7 +154,8 @@ class ProductsSearchGatewayImplIntegrationTest {
             ProductsSearchRepository(
                 service,
                 errorSerializer,
-                productsMapper
+                productsMapper,
+                logger
             )
         val query = "product3"
 
@@ -165,7 +177,8 @@ class ProductsSearchGatewayImplIntegrationTest {
             ProductsSearchRepository(
                 service,
                 errorSerializer,
-                productsMapper
+                productsMapper,
+                logger
             )
         val query = "product4"
 
@@ -189,7 +202,8 @@ class ProductsSearchGatewayImplIntegrationTest {
             ProductsSearchRepository(
                 service,
                 errorSerializer,
-                productsMapper
+                productsMapper,
+                logger
             )
         val query = "query"
 

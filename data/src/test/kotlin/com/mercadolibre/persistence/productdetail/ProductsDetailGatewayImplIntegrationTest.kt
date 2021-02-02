@@ -1,6 +1,7 @@
 package com.mercadolibre.persistence.productdetail
 
 import com.google.gson.Gson
+import com.mercadolibre.persistence.common.log.ErrorLogger
 import com.mercadolibre.persistence.common.serialization.BackEndErrorSerializer
 import com.mercadolibre.persistence.common.model.BackendModel
 import com.mercadolibre.persistence.productdetail.api.ProductDetailService
@@ -28,6 +29,11 @@ class ProductsDetailGatewayImplIntegrationTest {
     }
     private val productsMapper =
         ProductDetailBackendResponseMapperImpl()
+    private val logger = object : ErrorLogger {
+        override fun log(origin: String, e: Exception) {
+            // Does nothing
+        }
+    }
 
     @Test
     fun `given a valid product ID, when execute is called, then returns a Product with a valid id and title`() {
@@ -42,7 +48,8 @@ class ProductsDetailGatewayImplIntegrationTest {
                 service,
                 cache,
                 errorSerializer,
-                productsMapper
+                productsMapper,
+                logger
             )
         val productId = "MLA885869161"
 
@@ -65,10 +72,11 @@ class ProductsDetailGatewayImplIntegrationTest {
                 service,
                 cache,
                 errorSerializer,
-                productsMapper
+                productsMapper,
+                logger
             )
         val productId = "invalid-id"
-        `when`(cache.getProductDetails()).thenReturn(Product())
+        `when`(cache.getProductDetails(productId)).thenReturn(Product())
 
         val result = gateway.execute(productId)
 
@@ -89,10 +97,11 @@ class ProductsDetailGatewayImplIntegrationTest {
                 service,
                 cache,
                 errorSerializer,
-                productsMapper
+                productsMapper,
+                logger
             )
         val productId = ""
-        `when`(cache.getProductDetails()).thenReturn(Product())
+        `when`(cache.getProductDetails(productId)).thenReturn(Product())
 
         val result = gateway.execute(productId)
 
@@ -113,10 +122,11 @@ class ProductsDetailGatewayImplIntegrationTest {
                 service,
                 cache,
                 errorSerializer,
-                productsMapper
+                productsMapper,
+                logger
             )
         val productId = "MLA885869161"
-        `when`(cache.getProductDetails()).thenReturn(Product(id = productId))
+        `when`(cache.getProductDetails(productId)).thenReturn(Product(id = productId))
 
         val result = gateway.execute(productId)
 
@@ -140,10 +150,11 @@ class ProductsDetailGatewayImplIntegrationTest {
                 service,
                 cache,
                 errorSerializer,
-                productsMapper
+                productsMapper,
+                logger
             )
         val productId = "product1"
-        `when`(cache.getProductDetails()).thenReturn(Product(id = productId))
+        `when`(cache.getProductDetails(productId)).thenReturn(Product(id = productId))
 
         val result = gateway.execute(productId)
 
@@ -167,10 +178,11 @@ class ProductsDetailGatewayImplIntegrationTest {
                 service,
                 cache,
                 errorSerializer,
-                productsMapper
+                productsMapper,
+                logger
             )
         val productId = "product2"
-        `when`(cache.getProductDetails()).thenReturn(Product())
+        `when`(cache.getProductDetails(productId)).thenReturn(Product())
 
         val result = gateway.execute(productId)
 
@@ -193,10 +205,11 @@ class ProductsDetailGatewayImplIntegrationTest {
                 service,
                 cache,
                 errorSerializer,
-                productsMapper
+                productsMapper,
+                logger
             )
         val productId = "product3"
-        `when`(cache.getProductDetails()).thenReturn(Product())
+        `when`(cache.getProductDetails(productId)).thenReturn(Product())
 
         val result = gateway.execute(productId)
 
@@ -219,10 +232,11 @@ class ProductsDetailGatewayImplIntegrationTest {
                 service,
                 cache,
                 errorSerializer,
-                productsMapper
+                productsMapper,
+                logger
             )
         val productId = "product4"
-        `when`(cache.getProductDetails()).thenReturn(Product())
+        `when`(cache.getProductDetails(productId)).thenReturn(Product())
 
         val result = gateway.execute(productId)
 
@@ -246,10 +260,11 @@ class ProductsDetailGatewayImplIntegrationTest {
                 service,
                 cache,
                 errorSerializer,
-                productsMapper
+                productsMapper,
+                logger
             )
         val productId = "query"
-        `when`(cache.getProductDetails()).thenReturn(Product())
+        `when`(cache.getProductDetails(productId)).thenReturn(Product())
 
         val result = gateway.execute(productId)
 
@@ -271,10 +286,11 @@ class ProductsDetailGatewayImplIntegrationTest {
                 service,
                 cache,
                 errorSerializer,
-                productsMapper
+                productsMapper,
+                logger
             )
         val productId = "query"
-        `when`(cache.getProductDetails()).thenReturn(Product(id = productId))
+        `when`(cache.getProductDetails(productId)).thenReturn(Product(id = productId))
 
         val result = gateway.execute(productId)
 

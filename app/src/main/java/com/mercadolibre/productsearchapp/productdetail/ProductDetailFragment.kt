@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.mercadolibre.productsearchapp.databinding.FragmentProductDetailBinding
 import com.mercadolibre.productsearchapp.productsearch.navigation.ProductSearchNavigator.Companion.PRODUCT_ID
-import com.mercadolibre.productsearchapp.productsearch.setErrorCallToActionListener
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class ProductDetailFragment : Fragment() {

@@ -8,7 +8,7 @@ import com.mercadolibre.productsearch.usecases.productsearch.SearchProductIntera
 import org.junit.Test
 import org.mockito.Mockito.*
 
-class SearchProductByQueryInteractorImplTest {
+class SearchProductInteractorImplTest {
 
     @Test
     fun `given a query string, when execute is called, then it calls searchProductByQuery in gateway`() {

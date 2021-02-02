@@ -3,8 +3,8 @@ package com.mercadolibre.productsearchapp
 import androidx.room.Room
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
-import com.mercadolibre.persistence.AppDatabase
-import com.mercadolibre.persistence.model.CacheModel
+import com.mercadolibre.productsearchapp.persistence.AppDatabase
+import com.mercadolibre.productsearchapp.persistence.model.CacheModel
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotNull
 import org.junit.Test
@@ -56,7 +56,7 @@ class AppDatabaseInstrumentedTest {
 
         val fetchedProduct = dao.fetch(productId)
 
-        assertEquals(productId, fetchedProduct.id)
+        assertEquals(productId, fetchedProduct?.id)
     }
 
     private fun getProductsToInsert(): List<CacheModel.ProductDetailResponse> {

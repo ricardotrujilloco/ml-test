@@ -4,9 +4,8 @@ import android.app.Application
 import android.util.SparseArray
 import androidx.room.Room
 import com.google.gson.Gson
-import com.mercadolibre.persistence.AppDatabase
-import com.mercadolibre.persistence.ProductDetailCacheImpl
 import com.mercadolibre.persistence.common.BackendResponseMapper
+import com.mercadolibre.persistence.common.log.ErrorLogger
 import com.mercadolibre.persistence.common.serialization.BackEndErrorSerializer
 import com.mercadolibre.persistence.common.serialization.BackEndErrorSerializerImpl
 import com.mercadolibre.persistence.productdetail.ProductDetailRepository
@@ -30,7 +29,10 @@ import com.mercadolibre.productsearchapp.common.list.AdapterConstants
 import com.mercadolibre.productsearchapp.common.list.AppListAdapter
 import com.mercadolibre.productsearchapp.common.list.AppListAdapterImpl
 import com.mercadolibre.productsearchapp.common.list.ViewTypeDelegateAdapter
+import com.mercadolibre.productsearchapp.common.log.AppErrorLogger
 import com.mercadolibre.productsearchapp.common.navigation.AppNavigator
+import com.mercadolibre.productsearchapp.persistence.AppDatabase
+import com.mercadolibre.productsearchapp.persistence.ProductDetailCacheImpl
 import com.mercadolibre.productsearchapp.productdetail.ProductDetailUiMapper
 import com.mercadolibre.productsearchapp.productdetail.ProductDetailUiMapperImpl
 import com.mercadolibre.productsearchapp.productdetail.ProductDetailViewModel
@@ -41,6 +43,7 @@ import com.mercadolibre.productsearchapp.productsearch.adapter.ProductDelegateAd
 import com.mercadolibre.productsearchapp.productsearch.mapper.SearchProductUiMapper
 import com.mercadolibre.productsearchapp.productsearch.mapper.SearchProductUiMapperImpl
 import com.mercadolibre.productsearchapp.productsearch.navigation.ProductSearchNavigator
+import kotlinx.coroutines.Dispatchers
 import org.koin.android.viewmodel.dsl.viewModel
 import org.koin.core.qualifier.StringQualifier
 import org.koin.dsl.module
@@ -53,6 +56,7 @@ val PRODUCT_DETAIL = StringQualifier("PRODUCT_DETAIL")
 
 val appModule = module {
     factory { Locale("es", "AR") }
+    factory<ErrorLogger> { AppErrorLogger() }
 }
 
 val productSearchModule = module {
@@ -68,11 +72,7 @@ val productSearchModule = module {
         PRODUCTS_SEARCH
     ) { ProductsSearchBackendResponseMapperImpl() }
     factory<Repository<String, List<Product>>>(PRODUCTS_SEARCH) {
-        ProductsSearchRepository(
-            get(),
-            get(),
-            get(PRODUCTS_SEARCH)
-        )
+        ProductsSearchRepository(get(), get(), get(PRODUCTS_SEARCH), get())
     }
     factory<SearchProductInteractor> { SearchProductInteractorImpl(get(PRODUCTS_SEARCH)) }
     factory<SearchProductUiMapper> { SearchProductUiMapperImpl(get()) }
@@ -86,11 +86,16 @@ val productDetailModule = module {
     ) { ProductDetailBackendResponseMapperImpl() }
     factory<ProductDetailCache> { ProductDetailCacheImpl(get()) }
     factory<Repository<String, Product>>(PRODUCT_DETAIL) {
-        ProductDetailRepository(get(), get(), get(), get(PRODUCT_DETAIL))
+        ProductDetailRepository(get(), get(), get(), get(PRODUCT_DETAIL), get())
     }
     factory<ProductDetailInteractor> { ProductDetailInteractorImpl(get(PRODUCT_DETAIL)) }
     factory<ProductDetailUiMapper> { ProductDetailUiMapperImpl(get()) }
-    viewModel<ProductDetailViewModel> { ProductDetailViewModelImpl(get(), get()) }
+    viewModel<ProductDetailViewModel> {
+        ProductDetailViewModelImpl(
+            get(), get(),
+            Dispatchers.IO
+        )
+    }
 }
 
 val dataModule = module {
