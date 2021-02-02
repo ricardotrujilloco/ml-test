@@ -14,12 +14,14 @@ fun FragmentProductDetailBinding.setUpToolbar(activity: Activity): FragmentProdu
 
 fun FragmentProductDetailBinding.setProductDetails(productDetail: UiModel.ProductDetailResult): FragmentProductDetailBinding =
     apply {
-        productDetail.product?.let {
-            productTitle.text = it.title
-            productPrice.text = it.price
-            it.image.takeIf { it.isNotBlank() }
+        productDetail.product?.let { productDetail ->
+            productTitle.text = productDetail.title
+            productPrice.text = productDetail.price
+            productDetail.image.takeIf { it.isNotBlank() }
                 ?.let {
                     Glide.with(this.root).load(it).into(productImage)
                 }
+            productAvailability.text = productDetail.availableQuantity
+            productWarranty.text = productDetail.warranty
         }
     }

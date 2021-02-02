@@ -14,6 +14,8 @@ object CacheModel {
         val id: String = "",
         val title: String = "",
         val thumbnail: String = "",
+        val warranty: String = "",
+        val availableQuantity: Int = 0,
         val price: Double = 0.0,
         val currencyId: String = "",
         @TypeConverters(ProductDetailImageConverter::class)

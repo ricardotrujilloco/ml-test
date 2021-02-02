@@ -6,5 +6,7 @@ data class Product(
     val price: String = "",
     val thumbnail: String = "",
     val freeShipping: Boolean = false,
-    val images: List<String> = listOf()
+    val images: List<String> = listOf(),
+    val warranty: String = "",
+    val availableQuantity: Int = 0
 )

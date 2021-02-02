@@ -32,6 +32,8 @@ object UiModel {
         val title: String = "",
         val price: String = "",
         val image: String = "",
-        val freeShipping: Boolean = false
+        val freeShipping: Boolean = false,
+        val warranty: String = "",
+        val availableQuantity: String = ""
     )
 }

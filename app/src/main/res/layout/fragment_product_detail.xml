@@ -10,7 +10,8 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/size_medium"
             tools:context=".productdetail.ProductDetailFragment">
 
             <androidx.appcompat.widget.Toolbar
@@ -18,10 +19,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 android:background="?attr/colorPrimary"
-                app:title="@string/product"
                 android:elevation="4dp"
                 android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-                app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+                app:title="@string/product" />
 
             <TextView
                 android:id="@+id/productTitle"
@@ -54,11 +55,69 @@
                 android:ellipsize="end"
                 android:maxLines="3"
                 android:textColor="@color/dark_grey"
-                android:textSize="@dimen/text_size_xxlarge"
+                android:textSize="@dimen/text_size_xxxlarge"
                 app:layout_constraintEnd_toEndOf="@id/productImage"
                 app:layout_constraintStart_toStartOf="@id/productImage"
                 app:layout_constraintTop_toBottomOf="@id/productImage"
                 tools:text="$ 1.800.000" />
+
+            <TextView
+                android:id="@+id/productAvailabilityTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/size_medium"
+                android:ellipsize="end"
+                android:maxLines="3"
+                android:text="@string/available_quantity"
+                android:textColor="@color/dark_grey"
+                android:textSize="@dimen/text_size_medium"
+                app:layout_constraintStart_toStartOf="@id/productPrice"
+                app:layout_constraintTop_toBottomOf="@id/productPrice"  />
+
+            <TextView
+                android:id="@+id/productAvailability"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/size_medium"
+                android:ellipsize="end"
+                android:textStyle="bold"
+                android:maxLines="3"
+                android:layout_marginStart="@dimen/size_xxsmall"
+                android:textColor="@color/dark_grey"
+                android:textSize="@dimen/text_size_medium"
+                app:layout_constraintEnd_toEndOf="@id/productPrice"
+                app:layout_constraintStart_toEndOf="@id/productAvailabilityTitle"
+                app:layout_constraintTop_toBottomOf="@id/productPrice"
+                tools:text="2" />
+
+            <TextView
+                android:id="@+id/productWarrantyTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:layout_marginTop="@dimen/size_xsmall"
+                android:maxLines="3"
+                android:text="@string/warranty"
+                android:textColor="@color/dark_grey"
+                android:textSize="@dimen/text_size_medium"
+                app:layout_constraintEnd_toEndOf="@id/productAvailabilityTitle"
+                app:layout_constraintStart_toStartOf="@id/productAvailabilityTitle"
+                app:layout_constraintTop_toBottomOf="@+id/productAvailability" />
+
+            <TextView
+                android:id="@+id/productWarranty"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/size_xsmall"
+                android:ellipsize="end"
+                android:maxLines="3"
+                android:layout_marginStart="@dimen/size_xxsmall"
+                android:textColor="@color/mid_grey"
+                android:textSize="@dimen/text_size_medium"
+                app:layout_constraintEnd_toEndOf="@id/productPrice"
+                app:layout_constraintStart_toEndOf="@id/productWarrantyTitle"
+                app:layout_constraintTop_toBottomOf="@id/productAvailability"
+                tools:text="12 meses" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 </layout>

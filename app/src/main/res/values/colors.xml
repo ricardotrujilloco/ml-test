@@ -12,6 +12,7 @@
     <color name="blue_500">#296AF9</color>
     <color name="dark_grey">#262626</color>
     <color name="light_grey">#E9E9E9</color>
+    <color name="mid_grey">#898989</color>
     <color name="mint_green">#E1F6EA</color>
     <color name="grass_green">#13993E</color>
 </resources>

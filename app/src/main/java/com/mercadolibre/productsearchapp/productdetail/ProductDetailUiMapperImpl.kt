@@ -13,7 +13,9 @@ class ProductDetailUiMapperImpl(private val locale: Locale) : ProductDetailUiMap
             title = product.title,
             price = product.price.formatToLocale(locale),
             image = product.images.takeIf { it.isNotEmpty() }?.first() ?: "",
-            freeShipping = product.freeShipping
+            freeShipping = product.freeShipping,
+            warranty = product.warranty,
+            availableQuantity = product.availableQuantity.toString()
         )
     }
 }

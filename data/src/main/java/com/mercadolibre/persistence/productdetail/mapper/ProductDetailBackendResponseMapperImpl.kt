@@ -12,7 +12,9 @@ class ProductDetailBackendResponseMapperImpl :
             id = response.id,
             title = response.title,
             price = response.price.toString(),
-            images = response.pictures.map { it.url }
+            images = response.pictures.map { it.url },
+            availableQuantity = response.availableQuantity,
+            warranty = response.warranty
         )
     }
 }

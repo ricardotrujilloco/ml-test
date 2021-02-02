@@ -12,4 +12,6 @@
     <!-- Product Detail View -->
     <string name="free_shipping">Envío gratis</string>
     <string name="product">Producto</string>
+    <string name="available_quantity">Cantidad: </string>
+    <string name="warranty">Garantía: </string>
 </resources>
