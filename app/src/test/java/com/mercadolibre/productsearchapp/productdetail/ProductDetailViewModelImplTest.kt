@@ -38,10 +38,12 @@ class ProductDetailViewModelImplTest {
     }
 
     @Test
-    fun `given a productId, when gets product details, then returns the expected product`() = runBlocking {
+    fun `given a productId, when gets product details, then returns the expected product`() =
+        runBlocking {
             val interactor = mock(ProductDetailInteractor::class.java)
             val mapper = mock(ProductDetailUiMapper::class.java)
-            val viewModel: ProductDetailViewModel = ProductDetailViewModelImpl(interactor, mapper, Dispatchers.Main)
+            val viewModel: ProductDetailViewModel =
+                ProductDetailViewModelImpl(interactor, mapper, Dispatchers.Main)
             val expectedProductId = "productId"
             val product = Product(id = expectedProductId)
             val productDetail = UiModel.ProductDetail(id = expectedProductId)
@@ -57,42 +59,47 @@ class ProductDetailViewModelImplTest {
         }
 
     @Test
-    fun `given a productId, when gets product details with error, then returns the expected error`() = runBlocking {
-        val interactor = mock(ProductDetailInteractor::class.java)
-        val mapper = mock(ProductDetailUiMapper::class.java)
-        val viewModel: ProductDetailViewModel = ProductDetailViewModelImpl(interactor, mapper, Dispatchers.Main)
-        val expectedProductId = "productId"
-        val product = Product(id = expectedProductId)
-        val productDetail = UiModel.ProductDetail()
-        val error = UseCaseError(error = "error", message = "message")
-        val response = ResponseWrapper(product, error)
-        `when`(interactor.getProductDetails(expectedProductId)).thenReturn(response)
-        `when`(mapper.mapProductDetailToUiModel(product)).thenReturn(productDetail)
+    fun `given a productId, when gets product details with error, then returns the expected error`() =
+        runBlocking {
+            val interactor = mock(ProductDetailInteractor::class.java)
+            val mapper = mock(ProductDetailUiMapper::class.java)
+            val viewModel: ProductDetailViewModel =
+                ProductDetailViewModelImpl(interactor, mapper, Dispatchers.Main)
+            val expectedProductId = "productId"
+            val product = Product(id = expectedProductId)
+            val productDetail = UiModel.ProductDetail()
+            val error = UseCaseError(error = "error", message = "message")
+            val response = ResponseWrapper(product, error)
+            `when`(interactor.getProductDetails(expectedProductId)).thenReturn(response)
+            `when`(mapper.mapProductDetailToUiModel(product)).thenReturn(productDetail)
 
-        viewModel.getProductDetails(expectedProductId)
+            viewModel.getProductDetails(expectedProductId)
 
-        viewModel.getMediator().observeForever {
-            assertTrue(it?.product?.id?.isEmpty()!!)
+            viewModel.getMediator().observeForever {
+                assertTrue(it?.state == ProductDetailState.ERROR)
+            }
         }
-    }
 
     @Test
-    fun `given a productId, when gets product details with no error and null product, then returns and empty product`() = runBlocking {
-        val interactor = mock(ProductDetailInteractor::class.java)
-        val mapper = mock(ProductDetailUiMapper::class.java)
-        val viewModel: ProductDetailViewModel = ProductDetailViewModelImpl(interactor, mapper, Dispatchers.Main)
-        val expectedProductId = "productId"
-        val product = Product(id = expectedProductId)
-        val productDetail = UiModel.ProductDetail()
-        val error = UseCaseError()
-        val response = ResponseWrapper<Product>(error = error)
-        `when`(interactor.getProductDetails(expectedProductId)).thenReturn(response)
-        `when`(mapper.mapProductDetailToUiModel(product)).thenReturn(productDetail)
+    fun `given a productId, when gets product details with no error and null product, then returns and empty product`() =
+        runBlocking {
+            val interactor = mock(ProductDetailInteractor::class.java)
+            val mapper = mock(ProductDetailUiMapper::class.java)
+            val viewModel: ProductDetailViewModel =
+                ProductDetailViewModelImpl(interactor, mapper, Dispatchers.Main)
+            val expectedProductId = "productId"
+            val product = Product(id = expectedProductId)
+            val productDetail = UiModel.ProductDetail()
+            val error = UseCaseError()
+            val response = ResponseWrapper<Product>(error = error)
+            `when`(interactor.getProductDetails(expectedProductId)).thenReturn(response)
+            `when`(mapper.mapProductDetailToUiModel(product)).thenReturn(productDetail)
 
-        viewModel.getProductDetails(expectedProductId)
+            viewModel.getProductDetails(expectedProductId)
 
-        viewModel.getMediator().observeForever {
-            assertTrue(it?.product?.id?.isEmpty()!!)
+            viewModel.getMediator().observeForever {
+                assertTrue(it?.state == ProductDetailState.ERROR)
+                assertTrue(it?.product?.id?.isEmpty()!!)
+            }
         }
-    }
 }

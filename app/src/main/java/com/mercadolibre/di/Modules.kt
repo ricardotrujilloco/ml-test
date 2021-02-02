@@ -43,6 +43,7 @@ import com.mercadolibre.productsearchapp.productsearch.adapter.ProductDelegateAd
 import com.mercadolibre.productsearchapp.productsearch.mapper.SearchProductUiMapper
 import com.mercadolibre.productsearchapp.productsearch.mapper.SearchProductUiMapperImpl
 import com.mercadolibre.productsearchapp.productsearch.navigation.ProductSearchNavigator
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import org.koin.android.viewmodel.dsl.viewModel
 import org.koin.core.qualifier.StringQualifier
@@ -57,6 +58,7 @@ val PRODUCT_DETAIL = StringQualifier("PRODUCT_DETAIL")
 val appModule = module {
     factory { Locale("es", "AR") }
     factory<ErrorLogger> { AppErrorLogger() }
+    factory { Dispatchers.IO }
 }
 
 val productSearchModule = module {
@@ -76,7 +78,7 @@ val productSearchModule = module {
     }
     factory<SearchProductInteractor> { SearchProductInteractorImpl(get(PRODUCTS_SEARCH)) }
     factory<SearchProductUiMapper> { SearchProductUiMapperImpl(get()) }
-    viewModel<ProductSearchViewModel> { ProductSearchViewModelImpl(get(), get()) }
+    viewModel<ProductSearchViewModel> { ProductSearchViewModelImpl(get(), get(), get()) }
 }
 
 val productDetailModule = module {
@@ -91,10 +93,7 @@ val productDetailModule = module {
     factory<ProductDetailInteractor> { ProductDetailInteractorImpl(get(PRODUCT_DETAIL)) }
     factory<ProductDetailUiMapper> { ProductDetailUiMapperImpl(get()) }
     viewModel<ProductDetailViewModel> {
-        ProductDetailViewModelImpl(
-            get(), get(),
-            Dispatchers.IO
-        )
+        ProductDetailViewModelImpl(get(), get(), get())
     }
 }
 
