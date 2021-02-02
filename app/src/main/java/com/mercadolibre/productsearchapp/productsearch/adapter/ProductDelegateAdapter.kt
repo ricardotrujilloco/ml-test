@@ -24,7 +24,7 @@ class ProductDelegateAdapter() : ViewTypeDelegateAdapter {
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, item: ViewType) {
         holder as ProductViewHolder
-        holder.bind(item as UiModel.Product, holder.itemView)
+        holder.bind(item as UiModel.ProductResult, holder.itemView)
     }
 
     override fun setListener(listener: OnViewSelectedListener) {
@@ -42,7 +42,7 @@ class ProductDelegateAdapter() : ViewTypeDelegateAdapter {
         private val comments = itemView.comments
         private val time = itemView.time*/
 
-        fun bind(item: UiModel.Product, itemView: View) {
+        fun bind(item: UiModel.ProductResult, itemView: View) {
             title.text = item.title
             price.text = item.price
             item.freeShipping.takeIf { it }?.let { shippingTag.visibility = VISIBLE }

@@ -25,8 +25,11 @@
     <dimen name="text_size_xxxlarge">45sp</dimen>
     <dimen name="text_size_huge">56sp</dimen>
 
-    <!-- Product Detail View -->
+    <!-- Product Result View -->
     <dimen name="item_container_height">170dp</dimen>
     <dimen name="item_image_height">120dp</dimen>
+
+    <!-- Product Detail View -->
+    <dimen name="product_detail_image_height">250dp</dimen>
 
 </resources>

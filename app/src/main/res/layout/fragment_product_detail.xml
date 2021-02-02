@@ -3,19 +3,62 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <ScrollView
+        android:id="@+id/productDetailScrollView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".productdetail.ProductDetailFragment">
+        android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/productTitle"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="Producto" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".productdetail.ProductDetailFragment">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/productDetailToolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="?attr/colorPrimary"
+                app:title="@string/product"
+                android:elevation="4dp"
+                android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+
+            <TextView
+                android:id="@+id/productTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/size_medium"
+                android:ellipsize="end"
+                android:maxLines="3"
+                android:textColor="@color/dark_grey"
+                android:textSize="@dimen/text_size_large"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/productDetailToolbar"
+                tools:text="Camara Canon Eos 4000d- Rebelt100 + 18-55mm" />
+
+            <ImageView
+                android:id="@+id/productImage"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/product_detail_image_height"
+                android:layout_marginTop="@dimen/size_medium"
+                app:layout_constraintEnd_toEndOf="@id/productTitle"
+                app:layout_constraintStart_toStartOf="@id/productTitle"
+                app:layout_constraintTop_toBottomOf="@id/productTitle" />
+
+            <TextView
+                android:id="@+id/productPrice"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/size_medium"
+                android:ellipsize="end"
+                android:maxLines="3"
+                android:textColor="@color/dark_grey"
+                android:textSize="@dimen/text_size_xxlarge"
+                app:layout_constraintEnd_toEndOf="@id/productImage"
+                app:layout_constraintStart_toStartOf="@id/productImage"
+                app:layout_constraintTop_toBottomOf="@id/productImage"
+                tools:text="$ 1.800.000" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 </layout>

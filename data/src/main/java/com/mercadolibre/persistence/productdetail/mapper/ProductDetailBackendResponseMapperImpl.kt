@@ -10,7 +10,9 @@ class ProductDetailBackendResponseMapperImpl :
     override fun backendModelToEntity(response: ProductDetailsBackendModel.ProductDetailResponse): Product {
         return Product(
             id = response.id,
-            title = response.title
+            title = response.title,
+            price = response.price.toString(),
+            images = response.pictures.map { it.url }
         )
     }
 }

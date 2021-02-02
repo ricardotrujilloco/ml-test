@@ -44,3 +44,10 @@ fun FragmentProductSearchBinding.showContent(state: SearchState): FragmentProduc
     apply {
         searchContent.displayedChild = state.code()
     }
+
+fun FragmentProductSearchBinding.setErrorCallToActionListener(action: (value: String) -> Unit): FragmentProductSearchBinding =
+    apply {
+        errorMessage.errorCallToAction.setOnClickListener {
+            action(errorMessage.errorCallToAction.text.toString())
+        }
+    }

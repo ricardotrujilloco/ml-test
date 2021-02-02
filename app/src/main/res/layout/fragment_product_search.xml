@@ -72,6 +72,9 @@
             <include
                 android:id="@+id/noResultsMessage"
                 layout="@layout/view_no_results_message" />
+            <include
+                android:id="@+id/searchHint"
+                layout="@layout/view_search_hint" />
         </ViewFlipper>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

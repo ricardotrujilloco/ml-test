@@ -14,6 +14,6 @@ object ProductDetailsBackendModel {
     )
 
     data class ProductDetailImage(
-        @SerializedName("url") val title: String = ""
+        @SerializedName("url") val url: String = ""
     )
 }

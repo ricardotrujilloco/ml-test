@@ -21,15 +21,16 @@ class ProductDetailFragment : Fragment() {
         viewBinding = FragmentProductDetailBinding.inflate(
             LayoutInflater.from(context), null, true
         )
-        getProductDetails(arguments?.getString(PRODUCT_ID))
         return viewBinding.root
     }
 
-    private fun getProductDetails(productId: String?) {
-        productId?.takeIf { it.isNotBlank() }
-            ?.let {
-                viewBinding.productTitle.text = it
-                viewModel.getProductDetails(it)
-            }
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        activity?.let { activity ->
+            viewBinding
+                .setUpToolbar(activity)
+        }
+        viewModel.getMediator().observe(viewLifecycleOwner, { viewBinding.setProductDetails(it) })
+        viewModel.getProductDetails(arguments?.getString(PRODUCT_ID) ?: "")
     }
 }

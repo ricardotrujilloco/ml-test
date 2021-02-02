@@ -5,8 +5,11 @@
     <!-- Product Search View -->
     <string name="search_field_hint">Buscar producto</string>
     <string name="no_results_message">No se encontraron productos</string>
+    <string name="error_message">Ocurrio un error</string>
+    <string name="error_call_to_action">Intenta de nuevo</string>
     <string name="search_hint">Busca lo que quieras…</string>
 
     <!-- Product Detail View -->
     <string name="free_shipping">Envío gratis</string>
+    <string name="product">Producto</string>
 </resources>
