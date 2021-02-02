@@ -5,7 +5,7 @@
     <!-- Product Search View -->
     <string name="search_field_hint">Buscar producto</string>
     <string name="no_results_message">No se encontraron productos</string>
-    <string name="error_message">Ocurrio un error</string>
+    <string name="error_message">Ocurrió un error</string>
     <string name="error_call_to_action">Intenta de nuevo</string>
     <string name="search_hint">Busca lo que quieras…</string>
 
@@ -14,4 +14,5 @@
     <string name="product">Producto</string>
     <string name="available_quantity">Cantidad: </string>
     <string name="warranty">Garantía: </string>
+    <string name="retry">Reintentar</string>
 </resources>

@@ -3,121 +3,163 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <ScrollView
-        android:id="@+id/productDetailScrollView"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <ScrollView
+            android:id="@+id/productDetailScrollView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingBottom="@dimen/size_medium"
-            tools:context=".productdetail.ProductDetailFragment">
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@+id/errorMessageDetail"
+            app:layout_constraintTop_toTopOf="parent">
 
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/productDetailToolbar"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:background="?attr/colorPrimary"
-                android:elevation="4dp"
-                android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-                app:title="@string/product" />
-
-            <TextView
-                android:id="@+id/productTitle"
-                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/size_medium"
-                android:ellipsize="end"
-                android:maxLines="3"
-                android:textColor="@color/dark_grey"
-                android:textSize="@dimen/text_size_large"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/productDetailToolbar"
-                tools:text="Camara Canon Eos 4000d- Rebelt100 + 18-55mm" />
+                android:paddingBottom="@dimen/size_medium"
+                tools:context=".productdetail.ProductDetailFragment">
 
-            <ImageView
-                android:id="@+id/productImage"
-                android:layout_width="0dp"
-                android:layout_height="@dimen/product_detail_image_height"
-                android:layout_marginTop="@dimen/size_medium"
-                app:layout_constraintEnd_toEndOf="@id/productTitle"
-                app:layout_constraintStart_toStartOf="@id/productTitle"
-                app:layout_constraintTop_toBottomOf="@id/productTitle" />
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/productDetailToolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    android:background="?attr/colorPrimary"
+                    android:elevation="4dp"
+                    android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+                    app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+                    app:title="@string/product" />
 
-            <TextView
-                android:id="@+id/productPrice"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/size_medium"
-                android:ellipsize="end"
-                android:maxLines="3"
-                android:textColor="@color/dark_grey"
-                android:textSize="@dimen/text_size_xxxlarge"
-                app:layout_constraintEnd_toEndOf="@id/productImage"
-                app:layout_constraintStart_toStartOf="@id/productImage"
-                app:layout_constraintTop_toBottomOf="@id/productImage"
-                tools:text="$ 1.800.000" />
+                <TextView
+                    android:id="@+id/productTitle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/size_medium"
+                    android:ellipsize="end"
+                    android:maxLines="3"
+                    android:textColor="@color/dark_grey"
+                    android:textSize="@dimen/text_size_large"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/productDetailToolbar"
+                    tools:text="Camara Canon Eos 4000d- Rebelt100 + 18-55mm" />
 
-            <TextView
-                android:id="@+id/productAvailabilityTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/size_medium"
-                android:ellipsize="end"
-                android:maxLines="3"
-                android:text="@string/available_quantity"
-                android:textColor="@color/dark_grey"
-                android:textSize="@dimen/text_size_medium"
-                app:layout_constraintStart_toStartOf="@id/productPrice"
-                app:layout_constraintTop_toBottomOf="@id/productPrice"  />
+                <ImageView
+                    android:id="@+id/productImage"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/product_detail_image_height"
+                    android:layout_marginTop="@dimen/size_medium"
+                    app:layout_constraintEnd_toEndOf="@id/productTitle"
+                    app:layout_constraintStart_toStartOf="@id/productTitle"
+                    app:layout_constraintTop_toBottomOf="@id/productTitle" />
 
-            <TextView
-                android:id="@+id/productAvailability"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/size_medium"
-                android:ellipsize="end"
-                android:textStyle="bold"
-                android:maxLines="3"
-                android:layout_marginStart="@dimen/size_xxsmall"
-                android:textColor="@color/dark_grey"
-                android:textSize="@dimen/text_size_medium"
-                app:layout_constraintEnd_toEndOf="@id/productPrice"
-                app:layout_constraintStart_toEndOf="@id/productAvailabilityTitle"
-                app:layout_constraintTop_toBottomOf="@id/productPrice"
-                tools:text="2" />
+                <TextView
+                    android:id="@+id/productPrice"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/size_medium"
+                    android:ellipsize="end"
+                    android:maxLines="3"
+                    android:textColor="@color/dark_grey"
+                    android:textSize="@dimen/text_size_xxxlarge"
+                    app:layout_constraintEnd_toEndOf="@id/productImage"
+                    app:layout_constraintStart_toStartOf="@id/productImage"
+                    app:layout_constraintTop_toBottomOf="@id/productImage"
+                    tools:text="$ 1.800.000" />
 
-            <TextView
-                android:id="@+id/productWarrantyTitle"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:ellipsize="end"
-                android:layout_marginTop="@dimen/size_xsmall"
-                android:maxLines="3"
-                android:text="@string/warranty"
-                android:textColor="@color/dark_grey"
-                android:textSize="@dimen/text_size_medium"
-                app:layout_constraintEnd_toEndOf="@id/productAvailabilityTitle"
-                app:layout_constraintStart_toStartOf="@id/productAvailabilityTitle"
-                app:layout_constraintTop_toBottomOf="@+id/productAvailability" />
+                <TextView
+                    android:id="@+id/productAvailabilityTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/size_medium"
+                    android:ellipsize="end"
+                    android:maxLines="3"
+                    android:text="@string/available_quantity"
+                    android:textColor="@color/dark_grey"
+                    android:textSize="@dimen/text_size_medium"
+                    app:layout_constraintStart_toStartOf="@id/productPrice"
+                    app:layout_constraintTop_toBottomOf="@id/productPrice" />
 
-            <TextView
-                android:id="@+id/productWarranty"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/size_xsmall"
-                android:ellipsize="end"
-                android:maxLines="3"
-                android:layout_marginStart="@dimen/size_xxsmall"
-                android:textColor="@color/mid_grey"
-                android:textSize="@dimen/text_size_medium"
-                app:layout_constraintEnd_toEndOf="@id/productPrice"
-                app:layout_constraintStart_toEndOf="@id/productWarrantyTitle"
-                app:layout_constraintTop_toBottomOf="@id/productAvailability"
-                tools:text="12 meses" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
+                <TextView
+                    android:id="@+id/productAvailability"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/size_xxsmall"
+                    android:layout_marginTop="@dimen/size_medium"
+                    android:ellipsize="end"
+                    android:maxLines="3"
+                    android:textColor="@color/dark_grey"
+                    android:textSize="@dimen/text_size_medium"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="@id/productPrice"
+                    app:layout_constraintStart_toEndOf="@id/productAvailabilityTitle"
+                    app:layout_constraintTop_toBottomOf="@id/productPrice"
+                    tools:text="2" />
+
+                <TextView
+                    android:id="@+id/productWarrantyTitle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/size_xsmall"
+                    android:ellipsize="end"
+                    android:maxLines="3"
+                    android:text="@string/warranty"
+                    android:textColor="@color/dark_grey"
+                    android:textSize="@dimen/text_size_medium"
+                    app:layout_constraintEnd_toEndOf="@id/productAvailabilityTitle"
+                    app:layout_constraintStart_toStartOf="@id/productAvailabilityTitle"
+                    app:layout_constraintTop_toBottomOf="@+id/productAvailability" />
+
+                <TextView
+                    android:id="@+id/productWarranty"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/size_xxsmall"
+                    android:layout_marginTop="@dimen/size_xsmall"
+                    android:ellipsize="end"
+                    android:maxLines="3"
+                    android:textColor="@color/mid_grey"
+                    android:textSize="@dimen/text_size_medium"
+                    app:layout_constraintEnd_toEndOf="@id/productPrice"
+                    app:layout_constraintStart_toEndOf="@id/productWarrantyTitle"
+                    app:layout_constraintTop_toBottomOf="@id/productAvailability"
+                    tools:text="12 meses" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/errorGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:constraint_referenced_ids="errorMessageDetail,errorMessageAction" />
+
+        <TextView
+            android:id="@+id/errorMessageDetail"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/size_xxxlarge"
+            android:background="@color/alert_red"
+            android:gravity="center_vertical"
+            android:paddingStart="@dimen/size_medium"
+            android:paddingEnd="@dimen/size_medium"
+            android:text="@string/error_message"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size_large"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/errorMessageAction"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/errorMessageAction"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/size_xxxlarge"
+            android:background="@color/alert_red"
+            android:gravity="center_vertical"
+            android:paddingStart="@dimen/size_medium"
+            android:paddingEnd="@dimen/size_medium"
+            android:text="@string/retry"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size_large"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

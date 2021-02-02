@@ -48,6 +48,6 @@ fun FragmentProductSearchBinding.showContent(state: SearchState): FragmentProduc
 fun FragmentProductSearchBinding.setErrorCallToActionListener(action: (value: String) -> Unit): FragmentProductSearchBinding =
     apply {
         errorMessage.errorCallToAction.setOnClickListener {
-            action(errorMessage.errorCallToAction.text.toString())
+            action(searchField.text.toString())
         }
     }

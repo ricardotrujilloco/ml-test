@@ -15,4 +15,5 @@
     <color name="mid_grey">#898989</color>
     <color name="mint_green">#E1F6EA</color>
     <color name="grass_green">#13993E</color>
+    <color name="alert_red">#E92B3A</color>
 </resources>

@@ -33,7 +33,9 @@ class ProductDetailRepository(
     private val handleResponse: (Response<ProductDetailsBackendModel.ProductDetailResponse?>, productId: String) -> ResponseWrapper<Product> =
         { response, productId ->
             response.body()?.let {
-                ResponseWrapper(productsMapper.backendModelToEntity(it))
+                val product = productsMapper.backendModelToEntity(it)
+                cache.saveProductDetails(product)
+                ResponseWrapper(product)
             } ?: cache.getProductDetails(productId).takeIf { it.id.isNotBlank() }
                 ?.let { ResponseWrapper(it) }
             ?: ResponseWrapper(error = response.errorBody()?.let { getError(it) }

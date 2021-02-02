@@ -24,7 +24,7 @@ class ProductDetailCacheImpl(
     override fun getProductDetails(productId: String?): Product {
         return database.productDao()
             .fetch(productId ?: "")
-            .let {
+            ?.let {
                 Product(
                     id = it.id,
                     title = it.title,
@@ -32,6 +32,6 @@ class ProductDetailCacheImpl(
                     warranty = it.warranty,
                     availableQuantity = it.availableQuantity,
                 )
-            }
+            } ?: Product()
     }
 }

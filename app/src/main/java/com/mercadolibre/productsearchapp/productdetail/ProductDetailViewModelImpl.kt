@@ -6,8 +6,6 @@ import com.mercadolibre.productsearch.entities.Product
 import com.mercadolibre.productsearch.interfaceadapters.gateways.ResponseWrapper
 import com.mercadolibre.productsearch.usecases.productdetail.ProductDetailInteractor
 import com.mercadolibre.productsearchapp.common.model.UiModel
-import com.mercadolibre.productsearchapp.productsearch.SearchState
-import com.mercadolibre.productsearchapp.productsearch.mapper.SearchProductUiMapper
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -22,7 +20,8 @@ class ProductDetailViewModelImpl(
         mediator.value = UiModel.ProductDetailResult(ProductDetailState.LOADING)
         viewModelScope.launch(Dispatchers.Main) {
             mediator.value = withContext(Dispatchers.IO) {
-                productId.takeIf { it.isNotBlank() }?.let { interactor.getProductDetails(productId) }
+                productId.takeIf { it.isNotBlank() }
+                    ?.let { interactor.getProductDetails(productId) }
             }?.let { responseWrapper ->
                 manageResponse(responseWrapper)
             } ?: UiModel.ProductDetailResult(ProductDetailState.ERROR)
@@ -35,10 +34,10 @@ class ProductDetailViewModelImpl(
         } else {
             responseWrapper.response?.let {
                 UiModel.ProductDetailResult(
-                    ProductDetailState.ERROR,
+                    ProductDetailState.SUCCESS,
                     mapper.mapProductDetailToUiModel(it)
                 )
-            }?: UiModel.ProductDetailResult(ProductDetailState.ERROR)
+            } ?: UiModel.ProductDetailResult(ProductDetailState.ERROR)
         }
 
     override fun getMediator(): MediatorLiveData<UiModel.ProductDetailResult> = mediator

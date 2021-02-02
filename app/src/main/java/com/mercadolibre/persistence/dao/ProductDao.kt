@@ -17,5 +17,5 @@ interface ProductDao {
     fun insertAll(models: List<CacheModel.ProductDetailResponse>)
 
     @Query("SELECT * FROM $PRODUCT_TABLE WHERE id=:id")
-    fun fetch(id: String): CacheModel.ProductDetailResponse
+    fun fetch(id: String): CacheModel.ProductDetailResponse?
 }

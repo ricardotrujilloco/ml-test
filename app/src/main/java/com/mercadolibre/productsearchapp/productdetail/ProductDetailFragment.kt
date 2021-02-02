@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.mercadolibre.productsearchapp.databinding.FragmentProductDetailBinding
 import com.mercadolibre.productsearchapp.productsearch.navigation.ProductSearchNavigator.Companion.PRODUCT_ID
+import com.mercadolibre.productsearchapp.productsearch.setErrorCallToActionListener
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class ProductDetailFragment : Fragment() {
@@ -29,8 +30,17 @@ class ProductDetailFragment : Fragment() {
         activity?.let { activity ->
             viewBinding
                 .setUpToolbar(activity)
+                .setErrorCallToActionListener { getProductDetails() }
         }
-        viewModel.getMediator().observe(viewLifecycleOwner, { viewBinding.setProductDetails(it) })
+        viewModel.getMediator().observe(viewLifecycleOwner, {
+            it.takeIf { it.state == ProductDetailState.ERROR }?.let { viewBinding.showError() }
+            viewBinding.setProductDetails(it)
+        })
+        getProductDetails()
+    }
+
+    private fun getProductDetails() {
+        viewBinding.hideError()
         viewModel.getProductDetails(arguments?.getString(PRODUCT_ID) ?: "")
     }
 }
