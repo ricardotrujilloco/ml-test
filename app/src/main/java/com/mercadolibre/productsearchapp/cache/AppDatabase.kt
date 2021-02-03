@@ -1,11 +1,11 @@
-package com.mercadolibre.productsearchapp.persistence
+package com.mercadolibre.productsearchapp.cache
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
-import com.mercadolibre.productsearchapp.persistence.converter.ProductDetailImageConverter
-import com.mercadolibre.productsearchapp.persistence.dao.ProductDao
-import com.mercadolibre.productsearchapp.persistence.model.CacheModel
+import com.mercadolibre.productsearchapp.cache.converter.ProductDetailImageConverter
+import com.mercadolibre.productsearchapp.cache.dao.ProductDao
+import com.mercadolibre.productsearchapp.cache.model.CacheModel
 
 @Database(
     entities = [

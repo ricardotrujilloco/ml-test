@@ -1,9 +1,9 @@
-package com.mercadolibre.productsearchapp.persistence.converter
+package com.mercadolibre.productsearchapp.cache.converter
 
 import androidx.room.TypeConverter
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import com.mercadolibre.productsearchapp.persistence.model.CacheModel
+import com.mercadolibre.productsearchapp.cache.model.CacheModel
 import java.lang.reflect.Type
 
 class ProductDetailImageConverter {

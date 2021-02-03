@@ -1,10 +1,10 @@
-package com.mercadolibre.productsearchapp.persistence.model
+package com.mercadolibre.productsearchapp.cache.model
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import androidx.room.TypeConverters
-import com.mercadolibre.productsearchapp.persistence.AppDatabase.Companion.PRODUCT_TABLE
-import com.mercadolibre.productsearchapp.persistence.converter.ProductDetailImageConverter
+import com.mercadolibre.productsearchapp.cache.AppDatabase.Companion.PRODUCT_TABLE
+import com.mercadolibre.productsearchapp.cache.converter.ProductDetailImageConverter
 
 object CacheModel {
 

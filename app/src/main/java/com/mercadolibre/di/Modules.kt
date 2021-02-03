@@ -31,8 +31,8 @@ import com.mercadolibre.productsearchapp.common.list.AppListAdapterImpl
 import com.mercadolibre.productsearchapp.common.list.ViewTypeDelegateAdapter
 import com.mercadolibre.productsearchapp.common.log.AppErrorLogger
 import com.mercadolibre.productsearchapp.common.navigation.AppNavigator
-import com.mercadolibre.productsearchapp.persistence.AppDatabase
-import com.mercadolibre.productsearchapp.persistence.ProductDetailCacheImpl
+import com.mercadolibre.productsearchapp.cache.AppDatabase
+import com.mercadolibre.productsearchapp.cache.ProductDetailCacheImpl
 import com.mercadolibre.productsearchapp.productdetail.ProductDetailUiMapper
 import com.mercadolibre.productsearchapp.productdetail.ProductDetailUiMapperImpl
 import com.mercadolibre.productsearchapp.productdetail.ProductDetailViewModel
@@ -43,7 +43,6 @@ import com.mercadolibre.productsearchapp.productsearch.adapter.ProductDelegateAd
 import com.mercadolibre.productsearchapp.productsearch.mapper.SearchProductUiMapper
 import com.mercadolibre.productsearchapp.productsearch.mapper.SearchProductUiMapperImpl
 import com.mercadolibre.productsearchapp.productsearch.navigation.ProductSearchNavigator
-import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import org.koin.android.viewmodel.dsl.viewModel
 import org.koin.core.qualifier.StringQualifier

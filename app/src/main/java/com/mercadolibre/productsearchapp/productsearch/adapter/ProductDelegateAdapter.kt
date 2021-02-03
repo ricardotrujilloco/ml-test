@@ -37,24 +37,12 @@ class ProductDelegateAdapter() : ViewTypeDelegateAdapter {
         private val shippingTag: TextView = view.findViewById(R.id.shippingTag)
         private val thumbnail: ImageView = view.findViewById(R.id.productThumbnail)
 
-        /*private val description = itemView.description
-        private val author = itemView.author
-        private val comments = itemView.comments
-        private val time = itemView.time*/
-
         fun bind(item: UiModel.ProductResult, itemView: View) {
             title.text = item.title
             price.text = item.price
             item.freeShipping.takeIf { it }?.let { shippingTag.visibility = VISIBLE }
             Glide.with(itemView).load(item.thumbnail).into(thumbnail)
             super.itemView.setOnClickListener { listener?.onItemSelected(item.id) }
-            /*imgThumbnail.loadImg(item.thumbnail)
-            description.text = item.title
-            author.text = item.author
-            comments.text = "${item.numComments} comments"
-            time.text = item.created.getFriendlyTime()
-
-            super.itemView.setOnClickListener { viewSelectedListener.onItemSelected(item.url)}*/
         }
     }
 }

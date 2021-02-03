@@ -1,6 +1,6 @@
-package com.mercadolibre.productsearchapp.persistence
+package com.mercadolibre.productsearchapp.cache
 
-import com.mercadolibre.productsearchapp.persistence.model.CacheModel
+import com.mercadolibre.productsearchapp.cache.model.CacheModel
 import com.mercadolibre.persistence.productdetail.cache.ProductDetailCache
 import com.mercadolibre.productsearch.entities.Product
 
